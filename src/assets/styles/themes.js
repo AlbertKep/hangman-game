@@ -1,4 +1,4 @@
 export const dark = {
   backgroundColor: "#000000",
-  fontColor: "#ffffff",
+  fontColor: "#707070",
 };
