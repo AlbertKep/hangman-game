@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./assets/styles/globalStyles";
 import { dark } from "./assets/styles/themes";
 import { Container } from "./components/Container";
-import Main from "./pages/Main";
+import Main from "./pages/main/Main";
 import NewGame from "./pages/NewGame";
 import Words from "./pages/Words";
 import NotFound from "./pages/NotFound";

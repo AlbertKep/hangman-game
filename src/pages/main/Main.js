@@ -1,17 +1,19 @@
 import { Link } from "react-router-dom";
 
+import { Navigation, LinkList } from "./Main.styled";
+
 const Main = () => {
   return (
-    <div>
-      <ul>
+    <Navigation>
+      <LinkList>
         <li>
           <Link to="game">new game</Link>
         </li>
         <li>
           <Link to="words">words</Link>
         </li>
-      </ul>
-    </div>
+      </LinkList>
+    </Navigation>
   );
 };
 
