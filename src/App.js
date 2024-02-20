@@ -2,10 +2,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./assets/styles/globalStyles";
 import { dark } from "./assets/styles/themes";
-import { Container } from "./components/Container";
+import { Container } from "./components/templates/Container";
 import Main from "./pages/main/Main";
 import NewGame from "./pages/NewGame";
-import Words from "./pages/Words";
+import Words from "./pages/words/Words";
 import NotFound from "./pages/NotFound";
 
 const App = () => {
