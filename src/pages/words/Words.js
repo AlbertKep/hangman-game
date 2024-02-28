@@ -5,77 +5,56 @@ import {
   Container,
   WordList,
   Word,
+  Loading,
   Text,
   CategoryList,
   Category,
   ButtonContainer,
 } from "./Words.styled";
 
-const countries = [
-  "poland",
-  "spain",
-  "england",
-  "italy",
-  "poland",
-  "spain",
-  "england",
-  "italy",
-  "poland",
-  "spain",
-  "england",
-  "italy",
-  "poland",
-  "spain",
-  "england",
-  "italy",
-  "poland",
-  "spain",
-  "england",
-  "italy",
-  "poland",
-  "spain",
-  "england",
-  "italy",
-];
+// api function
+import { getCategories, getWords } from "../../api/services";
+
 const Words = () => {
-  const [words, setWords] = useState(countries);
+  const [words, setWords] = useState([]);
+  const [categories, setCategories] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   let navigate = useNavigate();
 
-  const addComma = () => {
-    const newList = words.map((word, index) => {
-      if (words.length - 1 === index) {
-        return word;
-      } else {
-        return word + ",";
-      }
-    });
-    setWords(newList);
-  };
-
   useEffect(() => {
-    addComma();
+    (async () => {
+      setIsLoading(true);
+      const categories = await getCategories();
+      setCategories(categories);
+      setIsLoading(false);
+    })();
   }, []);
+
+  const handleClick = async (category) => {
+    const words = await getWords(category);
+    setWords(words);
+  };
 
   return (
     <Container>
-      {words ? (
+      {words.length !== 0 ? (
         <WordList>
           {words?.map((word, index) => (
-            <Word key={index}>{word} </Word>
+            <Word key={index}>{word.name} </Word>
           ))}
         </WordList>
       ) : (
         <Text>Choose a category to see the words</Text>
       )}
+
+      {isLoading && <Loading>Loading...</Loading>}
+
       <CategoryList>
-        <Category>animals</Category>
-        <Category>countries</Category>
-        <Category>body</Category>
-        <Category>animals</Category>
-        <Category>countries</Category>
-        <Category>body</Category>
-        <Category>animals</Category>
-        <Category>countries</Category>
+        {categories?.map(({ category }) => (
+          <Category key={category} onClick={() => handleClick(category)}>
+            {category}
+          </Category>
+        ))}
       </CategoryList>
 
       <ButtonContainer>
