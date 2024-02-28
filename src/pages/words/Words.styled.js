@@ -15,17 +15,24 @@ export const Text = styled.h2`
 `;
 
 export const WordList = styled.ul`
-  padding: 1em;
+  padding: 1em 0.5em;
   width: -webkit-fill-available;
   background-color: ${({ theme }) => theme.backgroundColor};
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  font-size: clamp(1rem, 1rem + 0.5vw, 2rem);
 `;
 
-export const Word = styled.li``;
+export const Word = styled.li`
+  font-size: clamp(1rem, 1.5rem + 1.5vw, 3rem);
+`;
+
+export const Loading = styled.p`
+  text-align: center;
+  margin-top: 2em;
+  font-size: clamp(1rem, 1.5rem + 1vw, 3rem);
+`;
 
 export const CategoryList = styled.ul`
   overflow-y: scroll;
