@@ -15,6 +15,9 @@ import {
 // api function
 import { getCategories, getWords } from "../../api/services";
 
+// utils function
+import { addComma } from "../../utils/addComma";
+
 const Words = () => {
   const [words, setWords] = useState([]);
   const [categories, setCategories] = useState(null);
@@ -32,7 +35,9 @@ const Words = () => {
 
   const handleClick = async (category) => {
     const words = await getWords(category);
-    setWords(words);
+    const wordsWithComma = addComma(words);
+
+    setWords(wordsWithComma);
   };
 
   return (
