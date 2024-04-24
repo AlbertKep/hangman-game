@@ -6,7 +6,7 @@ import { dark } from "./assets/styles/themes";
 import { Container } from "./components/templates/Container";
 import Loading from "./pages/loading/Loading";
 import Main from "./pages/main/Main";
-import NewGame from "./pages/NewGame";
+import NewGame from "./pages/newGame/NewGame";
 import Words from "./pages/words/Words";
 import NotFound from "./pages/NotFound";
 
