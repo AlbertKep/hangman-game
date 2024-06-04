@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { letters } from "../../assets/letters";
 import { Button } from "../../components/templates/Button";
 import {
@@ -11,17 +12,44 @@ import {
   Buttons,
 } from "./NewGame.styled";
 
+import { getRandomWord } from "../../api/services";
+
 const NewGame = () => {
+  const [word, setWord] = useState({});
+  const [renderWord, setRenderWord] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const wordToArray = (word) => {
+    const convertWord = Array(word[0].name.length).fill("_");
+    setRenderWord(convertWord);
+  };
+
+  const startGame = async () => {
+    setIsLoading(true);
+    const randomWord = await getRandomWord();
+    setWord(...randomWord);
+    wordToArray(randomWord);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    startGame();
+  }, []);
+
+  if (isLoading) return "loading";
+
   return (
     <Container>
       <Hangman>hangman container</Hangman>
       <Info>
         <Category>
           <span>category: </span>
-          <span>country</span>
+          <span>{word?.category}</span>
         </Category>
         <Word>
-          <span>_ _ _ _ _</span>
+          {renderWord?.map((letter, index) => (
+            <span key={index}>{letter}</span>
+          ))}
         </Word>
       </Info>
       <Letters>
