@@ -17,7 +17,9 @@ import { getRandomWord } from "../../api/services";
 const NewGame = () => {
   const [word, setWord] = useState({});
   const [renderWord, setRenderWord] = useState([]);
+  const [checkedWord, setCheckedWord] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState(0);
 
   const wordToArray = (word) => {
     const convertWord = Array(word[0].name.length).fill("_");
@@ -28,8 +30,29 @@ const NewGame = () => {
     setIsLoading(true);
     const randomWord = await getRandomWord();
     setWord(...randomWord);
+    setCheckedWord([...randomWord[0].name]);
     wordToArray(randomWord);
     setIsLoading(false);
+  };
+
+  const checkTheLetter = (letter) => {
+    const localRenderWord = [...renderWord];
+
+    checkedWord.forEach((lt, index) => {
+      if (lt === letter) {
+        localRenderWord[index] = letter;
+        setRenderWord((prev) => {
+          prev[index] = letter;
+          return [...prev];
+        });
+      }
+    });
+
+    if (!checkedWord.includes(letter)) setErrors((prev) => prev + 1);
+  };
+
+  const handleClick = (selectedLetter) => {
+    checkTheLetter(selectedLetter);
   };
 
   useEffect(() => {
@@ -51,10 +74,11 @@ const NewGame = () => {
             <span key={index}>{letter}</span>
           ))}
         </Word>
+        {errors}
       </Info>
       <Letters>
         {letters?.map((letter) => (
-          <Letter key={letter}>
+          <Letter key={letter} onClick={() => handleClick(letter)}>
             <button>{letter}</button>
           </Letter>
         ))}
