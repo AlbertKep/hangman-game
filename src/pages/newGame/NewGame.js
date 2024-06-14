@@ -20,7 +20,9 @@ const NewGame = () => {
   const [checkedWord, setCheckedWord] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState(0);
-  const [isWin, setIsWin] = useState("Not Yet");
+  const [gameStatus, setGameStatus] = useState("Not Yet");
+
+  const maxNumbersOfErros = 8;
 
   const wordToArray = (word) => {
     const convertWord = Array(word[0].name.length).fill("_");
@@ -34,11 +36,6 @@ const NewGame = () => {
     setCheckedWord([...randomWord[0].name]);
     wordToArray(randomWord);
     setIsLoading(false);
-  };
-
-  const checkIfIsWin = () => {
-    if (renderWord.reduce((a, b) => a && checkedWord.includes(b), true))
-      setIsWin("You WON");
   };
 
   const checkTheLetter = (letter) => {
@@ -57,13 +54,21 @@ const NewGame = () => {
     if (!checkedWord.includes(letter)) setErrors((prev) => prev + 1);
   };
 
+  const checkGameStatus = () => {
+    if (renderWord.reduce((a, b) => a && checkedWord.includes(b), true)) {
+      setGameStatus("You WON");
+    } else if (errors === maxNumbersOfErros) {
+      setGameStatus("YOU LOOSE!");
+    }
+  };
+
   const handleClick = (selectedLetter) => {
     checkTheLetter(selectedLetter);
   };
 
   useEffect(() => {
-    if (renderWord.length > 0) checkIfIsWin();
-  }, [renderWord]);
+    if (renderWord.length > 0) checkGameStatus();
+  }, [renderWord, errors]);
 
   useEffect(() => {
     startGame();
@@ -85,7 +90,7 @@ const NewGame = () => {
           ))}
         </Word>
         {errors}
-        {isWin}
+        {gameStatus}
       </Info>
       <Letters>
         {letters?.map((letter) => (
