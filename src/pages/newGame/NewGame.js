@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { letters } from "../../assets/letters";
 import { Button } from "../../components/templates/Button";
+import Modal from "../../components/modal/Modal";
 import {
   Container,
   Hangman,
@@ -10,6 +11,8 @@ import {
   Category,
   Word,
   Buttons,
+  ModalGameStatus,
+  ModalGameData,
 } from "./NewGame.styled";
 
 import { getRandomWord } from "../../api/services";
@@ -21,6 +24,7 @@ const NewGame = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState(0);
   const [gameStatus, setGameStatus] = useState("Not Yet");
+  const [showModal, setShowModal] = useState(false);
 
   const maxNumbersOfErros = 8;
 
@@ -56,9 +60,11 @@ const NewGame = () => {
 
   const checkGameStatus = () => {
     if (renderWord.reduce((a, b) => a && checkedWord.includes(b), true)) {
-      setGameStatus("You WON");
+      setGameStatus("You WON!");
+      setShowModal(true);
     } else if (errors === maxNumbersOfErros) {
       setGameStatus("YOU LOOSE!");
+      setShowModal(true);
     }
   };
 
@@ -89,8 +95,6 @@ const NewGame = () => {
             <span key={index}>{letter}</span>
           ))}
         </Word>
-        {errors}
-        {gameStatus}
       </Info>
       <Letters>
         {letters?.map((letter) => (
@@ -103,6 +107,18 @@ const NewGame = () => {
         <Button>restart</Button>
         <Button>give up</Button>
       </Buttons>
+      {showModal && (
+        <Modal>
+          <ModalGameStatus>{gameStatus}</ModalGameStatus>
+          <ModalGameData>password: {word.name}</ModalGameData>
+          <ModalGameData>errors: {errors}</ModalGameData>
+
+          <Buttons>
+            <Button>new game</Button>
+            <Button>close</Button>
+          </Buttons>
+        </Modal>
+      )}
     </Container>
   );
 };
