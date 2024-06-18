@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ModalContent } from "../../components/modal/Modal.styled";
 
 export const Container = styled.div``;
 export const Hangman = styled.div`
@@ -56,4 +57,13 @@ export const Buttons = styled.div`
   @media (min-width: 1400px) {
     margin-top: 3em;
   }
+`;
+export const ModalGameStatus = styled.h3`
+  font-size: clamp(1.1rem, 1.5rem + 1vw, 3.5rem);
+`;
+
+export const ModalGameData = styled.span`
+  display: block;
+  font-size: clamp(1.1rem, 1rem + 1vw, 2rem);
+  margin-top: 0.25em;
 `;
