@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { letters } from "../../assets/letters";
 import { Button } from "../../components/templates/Button";
 import Modal from "../../components/modal/Modal";
@@ -23,10 +24,11 @@ const NewGame = () => {
   const [checkedWord, setCheckedWord] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState(0);
-  const [gameStatus, setGameStatus] = useState("Not Yet");
+  const [gameStatus, setGameStatus] = useState("");
   const [showModal, setShowModal] = useState(false);
 
   const maxNumbersOfErros = 8;
+  let navigate = useNavigate();
 
   const wordToArray = (word) => {
     const convertWord = Array(word[0].name.length).fill("_");
@@ -61,16 +63,25 @@ const NewGame = () => {
   const checkGameStatus = () => {
     if (renderWord.reduce((a, b) => a && checkedWord.includes(b), true)) {
       setGameStatus("You WON!");
-      setShowModal(true);
+      // setShowModal(true);
+      switchModal();
     } else if (errors === maxNumbersOfErros) {
       setGameStatus("YOU LOOSE!");
-      setShowModal(true);
+      // setShowModal(true);
+      switchModal();
     }
   };
 
+  const switchModal = () => setShowModal((prev) => !prev);
+
   const newGame = () => {
-    setShowModal(false);
+    switchModal();
     startGame();
+  };
+
+  const closeModal = () => {
+    switchModal();
+    navigate("/");
   };
 
   const handleClick = (selectedLetter) => {
@@ -120,7 +131,7 @@ const NewGame = () => {
 
           <Buttons>
             <Button onClick={() => newGame()}>new game</Button>
-            <Button>close</Button>
+            <Button onClick={() => closeModal()}>close</Button>
           </Buttons>
         </Modal>
       )}
