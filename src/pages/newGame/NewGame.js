@@ -68,6 +68,11 @@ const NewGame = () => {
     }
   };
 
+  const newGame = () => {
+    setShowModal(false);
+    startGame();
+  };
+
   const handleClick = (selectedLetter) => {
     checkTheLetter(selectedLetter);
   };
@@ -114,7 +119,7 @@ const NewGame = () => {
           <ModalGameData>errors: {errors}</ModalGameData>
 
           <Buttons>
-            <Button>new game</Button>
+            <Button onClick={() => newGame()}>new game</Button>
             <Button>close</Button>
           </Buttons>
         </Modal>
