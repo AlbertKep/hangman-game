@@ -114,8 +114,17 @@ const NewGame = () => {
       </Info>
       <Letters>
         {letters?.map((letter) => (
-          <Letter key={letter} onClick={() => handleClick(letter)}>
-            <button>{letter}</button>
+          <Letter
+            key={letter.letter}
+            onClick={() => handleClick(letter.letter)}
+            disabled={letter.isDisabled}
+          >
+            <button
+              onClick={() => (letter.isDisabled = true)}
+              disabled={letter.isDisabled}
+            >
+              {letter.letter}
+            </button>
           </Letter>
         ))}
       </Letters>
