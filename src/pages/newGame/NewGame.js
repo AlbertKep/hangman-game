@@ -76,12 +76,20 @@ const NewGame = () => {
 
   const newGame = () => {
     switchModal();
+    enableButtons();
     startGame();
   };
 
   const closeModal = () => {
     switchModal();
+    enableButtons();
     navigate("/");
+  };
+
+  const enableButtons = () => {
+    letters.forEach((letter) => {
+      letter.isDisabled = false;
+    });
   };
 
   const handleClick = (selectedLetter) => {
