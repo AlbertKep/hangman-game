@@ -1,21 +1,12 @@
-import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { drawPathProperties } from "../../utils/animationProperties";
-import useDrawHangman from "../../hooks/useDrawHangman";
 
-const Loading = () => {
-  const [
-    pathGallowsBottomPartControls,
-    pathGallowsTopPartControls,
-    pathHeadControls,
-    pathArmsAndLegsControls,
-    drawHangman,
-  ] = useDrawHangman();
-
-  useEffect(() => {
-    drawHangman();
-  }, []);
-
+const Loading = ({
+  pathGallowsBottomPartControls,
+  pathGallowsTopPartControls,
+  pathHeadControls,
+  pathArmsAndLegsControls,
+}) => {
   return (
     <>
       <svg
