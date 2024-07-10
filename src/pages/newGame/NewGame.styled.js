@@ -1,10 +1,7 @@
 import styled from "styled-components";
-import { ModalContent } from "../../components/modal/Modal.styled";
 
 export const Container = styled.div``;
-export const Hangman = styled.div`
-  height: 300px;
-`;
+export const Hangman = styled.div``;
 
 export const Letters = styled.ul`
   display: flex;
@@ -16,6 +13,8 @@ export const Letters = styled.ul`
 
 export const Letter = styled.li`
   border: 1px solid grey;
+  background-color: ${({ theme, disabled }) =>
+    !disabled ? "transparent" : theme.fontColor};
   border-radius: 5px;
   height: auto;
   width: clamp(40px, 40px + 1vw, 50px);
