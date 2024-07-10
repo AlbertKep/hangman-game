@@ -1,6 +1,6 @@
 import { useAnimation } from "framer-motion";
 import { useEffect } from "react";
-import Hangman from "../../components/hangman/Hangman";
+import HangmanLoadingController from "../../components/hangmanLoadingController/HangmanLoadingController";
 import { GameTitle } from "./Loading.styled";
 import { showTextProperties } from "../../utils/animationProperties";
 import { addToSessionStorage } from "../../utils/addToSessionStorage";
@@ -20,7 +20,7 @@ const Loading = ({ setIsFirstOpen }) => {
 
   return (
     <div>
-      <Hangman />
+      <HangmanLoadingController isGame={false} />
       <GameTitle initial={showTextProperties.hidden} animate={showText}>
         hangman game
       </GameTitle>
