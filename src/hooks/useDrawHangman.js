@@ -1,23 +1,17 @@
-import { useAnimation } from "framer-motion";
-import { drawPathProperties } from "../utils/animationProperties";
+import useDrawGallowsBottom from "./useDrawGallowsBottomPart";
+import useDrawGallowsTop from "./useDrawGallowsTopPart";
+import useDrawHeadAndBody from "./useDrawHeadAndBody";
+import useDrawArmsAndLegs from "./useDrawArmsAndLegs";
 
 const useDrawHangman = () => {
-  const pathGallowsBottomPartControls = useAnimation();
-  const pathGallowsTopPartControls = useAnimation();
-  const pathHeadControls = useAnimation();
-  const pathArmsAndLegsControls = useAnimation();
+  const [pathGallowsBottomPartControls, drawGallowsBottomPart] =
+    useDrawGallowsBottom();
 
-  const drawGallowsBottomPart = () =>
-    pathGallowsBottomPartControls.start(drawPathProperties.visible);
+  const [pathGallowsTopPartControls, drawGallowsTopPart] = useDrawGallowsTop();
 
-  const drawGallowsTopPart = () =>
-    pathGallowsTopPartControls.start(drawPathProperties.visible);
+  const [pathHeadControls, drawHeadAndBody] = useDrawHeadAndBody();
 
-  const drawHeadAndBody = () =>
-    pathHeadControls.start(drawPathProperties.visible);
-
-  const drawArmsAndLegs = () =>
-    pathArmsAndLegsControls.start(drawPathProperties.visible);
+  const [pathArmsAndLegsControls, drawArmsAndLegs] = useDrawArmsAndLegs();
 
   const drawHangman = async () => {
     await drawGallowsBottomPart();
