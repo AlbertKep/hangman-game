@@ -2,7 +2,11 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { letters } from "../../assets/letters";
 import { Button } from "../../components/templates/Button";
+
+// import Hangman from "../../components/hangman/Hangman";
+import HangmanGameController from "../../components/hangmanGameController/HangmanGameController";
 import Modal from "../../components/modal/Modal";
+
 import {
   Container,
   Hangman,
@@ -27,7 +31,7 @@ const NewGame = () => {
   const [gameStatus, setGameStatus] = useState("");
   const [showModal, setShowModal] = useState(false);
 
-  const maxNumbersOfErros = 8;
+  const maxNumbersOfErros = 4;
   let navigate = useNavigate();
 
   const wordToArray = (word) => {
@@ -41,6 +45,7 @@ const NewGame = () => {
     setWord(...randomWord);
     setCheckedWord([...randomWord[0].name]);
     wordToArray(randomWord);
+    setGameStatus("");
     setIsLoading(false);
   };
 
@@ -63,25 +68,30 @@ const NewGame = () => {
   const checkGameStatus = () => {
     if (renderWord.reduce((a, b) => a && checkedWord.includes(b), true)) {
       setGameStatus("You WON!");
-      // setShowModal(true);
       switchModal();
     } else if (errors === maxNumbersOfErros) {
       setGameStatus("YOU LOOSE!");
-      // setShowModal(true);
       switchModal();
     }
   };
 
-  const switchModal = () => setShowModal((prev) => !prev);
+  const switchModal = () => {
+    setTimeout(() => {
+      setShowModal(true);
+    }, 800);
+  };
 
   const newGame = () => {
-    switchModal();
+    setTimeout(() => {
+      setShowModal(false);
+    }, 0);
+    setErrors(0);
     enableButtons();
     startGame();
   };
 
   const closeModal = () => {
-    switchModal();
+    setShowModal(false);
     enableButtons();
     navigate("/");
   };
@@ -108,7 +118,9 @@ const NewGame = () => {
 
   return (
     <Container>
-      <Hangman>hangman container</Hangman>
+      <Hangman>
+        <HangmanGameController isGame errors={errors} />
+      </Hangman>
       <Info>
         <Category>
           <span>category: </span>
