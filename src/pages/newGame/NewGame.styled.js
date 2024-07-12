@@ -1,7 +1,13 @@
 import styled from "styled-components";
 
 export const Container = styled.div``;
-export const Hangman = styled.div``;
+export const Hangman = styled.div`
+  padding-left: 1em;
+  svg {
+    height: clamp(200px, 30%, 373px);
+    width: clamp(200px, 40%, 314px);
+  }
+`;
 
 export const Letters = styled.ul`
   display: flex;
