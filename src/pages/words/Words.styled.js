@@ -36,7 +36,7 @@ export const Loading = styled.p`
 
 export const CategoryList = styled.ul`
   overflow-y: scroll;
-  height: 500px;
+  /* height: 500px; */
   margin-top: 2em;
   padding: 1.5em;
   display: grid;
@@ -60,14 +60,24 @@ export const Category = styled.li`
   padding: 2em 0;
   border-radius: 0.8em;
   text-align: center;
-  width: clamp(100px, 100%, 150px);
-  font-size: clamp(1rem, 1rem + 0.5vw, 2rem);
-  font-weight: bold;
+  width: clamp(150px, 100%, 200px);
   cursor: pointer;
 
   &:hover {
     background-color: ${({ theme }) => theme.hoverBackgroundColor};
+  }
+
+  &:hover button {
+    cursor: pointer;
     color: ${({ theme }) => theme.hoverFontColor};
+  }
+
+  button {
+    background-color: transparent;
+    color: ${({ theme }) => theme.fontColor};
+    border: none;
+    font-size: clamp(1rem, 1rem + 0.75vw, 2rem);
+    font-weight: bold;
   }
 `;
 
