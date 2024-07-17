@@ -57,7 +57,7 @@ const Words = () => {
       <CategoryList>
         {categories?.map(({ category }) => (
           <Category key={category} onClick={() => handleClick(category)}>
-            {category}
+            <button>{category}</button>
           </Category>
         ))}
       </CategoryList>
