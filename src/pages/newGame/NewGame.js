@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { letters } from "../../assets/letters";
 import { Button } from "../../components/templates/Button";
 
-// import Hangman from "../../components/hangman/Hangman";
 import HangmanGameController from "../../components/hangmanGameController/HangmanGameController";
 import Modal from "../../components/modal/Modal";
 
@@ -45,7 +44,9 @@ const NewGame = () => {
     setWord(...randomWord);
     setCheckedWord([...randomWord[0].name]);
     wordToArray(randomWord);
+    enableButtons();
     setGameStatus("");
+    setErrors(0);
     setIsLoading(false);
   };
 
@@ -68,25 +69,21 @@ const NewGame = () => {
   const checkGameStatus = () => {
     if (renderWord.reduce((a, b) => a && checkedWord.includes(b), true)) {
       setGameStatus("You WON!");
-      switchModal();
-    } else if (errors === maxNumbersOfErros) {
+      openModal();
+    } else if (maxNumbersOfErros === errors) {
       setGameStatus("YOU LOOSE!");
-      switchModal();
+      openModal();
     }
   };
 
-  const switchModal = () => {
+  const openModal = () => {
     setTimeout(() => {
       setShowModal(true);
-    }, 800);
+    }, 500);
   };
 
   const newGame = () => {
-    setTimeout(() => {
-      setShowModal(false);
-    }, 0);
-    setErrors(0);
-    enableButtons();
+    setShowModal(false);
     startGame();
   };
 
