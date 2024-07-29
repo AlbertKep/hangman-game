@@ -30,6 +30,12 @@ const NewGame = () => {
   const [gameStatus, setGameStatus] = useState("");
   const [showModal, setShowModal] = useState(false);
 
+  const [showControlGameModal, setShowControlGameModal] = useState(false);
+  const [controlGameOptions, setControlGameOptions] = useState({
+    choice: "",
+    modalMsg: "",
+  });
+
   const maxNumbersOfErros = 4;
   let navigate = useNavigate();
 
@@ -74,6 +80,28 @@ const NewGame = () => {
       setGameStatus("YOU LOOSE!");
       openModal();
     }
+  };
+
+  const restartOrQuitChoice = (choice) => {
+    setShowControlGameModal(true);
+    if (choice === "restart") {
+      setControlGameOptions({
+        choice: choice,
+        msg: "Are you sure to restart the game?",
+      });
+    }
+
+    if (choice === "quit") {
+      setControlGameOptions({
+        choice: choice,
+        msg: "Are you sure to quit the game?",
+      });
+    }
+  };
+
+  const restartOrQuitResult = () => {
+    controlGameOptions.choice === "restart" ? newGame() : navigate("/");
+    setShowControlGameModal(false);
   };
 
   const openModal = () => {
@@ -146,8 +174,8 @@ const NewGame = () => {
         ))}
       </Letters>
       <Buttons>
-        <Button>restart</Button>
-        <Button>give up</Button>
+        <Button onClick={() => restartOrQuitChoice("restart")}>restart</Button>
+        <Button onClick={() => restartOrQuitChoice("quit")}>give up</Button>
       </Buttons>
       {showModal && (
         <Modal>
@@ -158,6 +186,16 @@ const NewGame = () => {
           <Buttons>
             <Button onClick={() => newGame()}>new game</Button>
             <Button onClick={() => closeModal()}>close</Button>
+          </Buttons>
+        </Modal>
+      )}
+      {showControlGameModal && (
+        <Modal>
+          <ModalGameStatus>{controlGameOptions.msg}</ModalGameStatus>
+
+          <Buttons>
+            <Button onClick={() => restartOrQuitResult()}>Yes</Button>
+            <Button onClick={() => setShowControlGameModal(false)}>No</Button>
           </Buttons>
         </Modal>
       )}
