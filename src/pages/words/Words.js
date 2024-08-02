@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { showItems } from "../../assets/animationVariants";
 import { Button } from "../../components/templates/Button";
 import {
   Container,
@@ -55,8 +57,14 @@ const Words = () => {
       {isLoading && <Loading>Loading...</Loading>}
 
       <CategoryList>
-        {categories?.map(({ category }) => (
-          <Category key={category} onClick={() => handleClick(category)}>
+        {categories?.map(({ category }, i) => (
+          <Category
+            custom={i}
+            animate="visible"
+            variants={showItems}
+            key={category}
+            onClick={() => handleClick(category)}
+          >
             <button>{category}</button>
           </Category>
         ))}

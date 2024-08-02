@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import { letters } from "../../assets/letters";
+import {
+  showLetters,
+  showItems,
+  slideOut,
+} from "../../assets/animationVariants";
 import { Button } from "../../components/templates/Button";
 
 import HangmanGameController from "../../components/hangmanGameController/HangmanGameController";
@@ -147,19 +153,29 @@ const NewGame = () => {
         <HangmanGameController isGame errors={errors} />
       </Hangman>
       <Info>
-        <Category>
+        <Category initial="initial" animate="animate" variants={slideOut}>
           <span>category: </span>
           <span>{word?.category}</span>
         </Category>
         <Word>
-          {renderWord?.map((letter, index) => (
-            <span key={index}>{letter}</span>
+          {renderWord?.map((letter, i) => (
+            <motion.span
+              custom={i}
+              animate="visible"
+              variants={showItems}
+              key={i}
+            >
+              {letter}
+            </motion.span>
           ))}
         </Word>
       </Info>
       <Letters>
-        {letters?.map((letter) => (
+        {letters?.map((letter, i) => (
           <Letter
+            custom={i}
+            animate="visible"
+            variants={showLetters}
             key={letter.letter}
             onClick={() => handleClick(letter.letter)}
             disabled={letter.isDisabled}

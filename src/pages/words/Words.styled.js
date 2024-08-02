@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const Container = styled.div`
   width: 100%;
@@ -54,7 +55,8 @@ export const CategoryList = styled.ul`
   }
 `;
 
-export const Category = styled.li`
+export const Category = styled(motion.li)`
+  opacity: 0;
   border: 2px solid grey;
   border-color: ${({ theme }) => theme.borderColor};
   padding: 2em 0;

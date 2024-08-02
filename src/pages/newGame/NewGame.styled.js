@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const Container = styled.div``;
 export const Hangman = styled.div`
@@ -17,7 +18,8 @@ export const Letters = styled.ul`
   padding: 1em;
 `;
 
-export const Letter = styled.li`
+export const Letter = styled(motion.li)`
+  opacity: 0;
   border: 1px solid grey;
   background-color: ${({ theme, disabled }) =>
     !disabled ? "transparent" : theme.fontColor};
@@ -43,12 +45,16 @@ export const Info = styled.div`
   padding-left: 1em;
 `;
 
-export const Category = styled.div`
+export const Category = styled(motion.div)`
   font-size: clamp(1rem, 1rem + 1vw, 3rem);
 `;
 
 export const Word = styled.div`
   font-size: clamp(1.1rem, 1.5rem + 1vw, 3.5rem);
+
+  span {
+    opacity: 0;
+  }
 `;
 
 export const Buttons = styled.div`
