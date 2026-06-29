@@ -80,4 +80,4 @@ npm run start
 - Framer Motion animations — creating smooth transitions, button interactions, and modal effects.
 - Responsive UI/UX — designing a layout that scales well across devices.
 - Clean JavaScript — writing readable, maintainable JS without TypeScript.
-- Game logic design — implementing word reveal mechanics, keyboard behavior, and win/- lose conditions.
+- Game logic design — implementing word reveal mechanics, and win/- lose conditions.
