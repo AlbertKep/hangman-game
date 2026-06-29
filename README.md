@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# 🕹️ Hangman Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern implementation of the classic Hangman game built with React, JavaScript, Framer Motion, and Styled Components.
+The project focuses on smooth animations, clean UI, and modular architecture — ready for future multiplayer expansion.
 
-## Available Scripts
+### 🚀 Live Demo
 
-In the project directory, you can run:
+[Hangman Game](https://hangman-game-live.netlify.app/)
 
-### `npm start`
+### 🛠️ Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React
+- Framer Motion
+- Firebase Firestore
+- Styled Components
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 📌 Features
 
-### `npm test`
+- Classic gameplay — guess the hidden word by selecting letters from an on‑screen keyboard.
+- Smooth animations — Framer Motion powers transitions, button interactions, and end‑game screens.
+- Responsive UI — layout adapts cleanly across devices, keeping the keyboard and word display readable.
+- Mistake tracking — incorrect guesses update the counter with animated feedback.
+- Win/Lose screens — animated end‑game modals with a clear restart option.
+- Instant restart — full animated reset of the board, keyboard, and counters.
+- Clean architecture — logic, UI, and animations separated into dedicated modules.
+- Minimalistic design — simple, readable interface focused entirely on gameplay.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 📅 Planned Features
 
-### `npm run build`
+- More words — expanding the word pool to increase replayability.
+- Word categories — adding themed categories (e.g., Animals, Movies, Countries) to make gameplay more structured.
+- Player ranking — introducing a simple score system or leaderboard based on wins and mistake count.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 🖼️ Screenshots
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### New game
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![New game](/public/screens/new_game.PNG)
 
-### `npm run eject`
+#### Win screen
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![Win](/public/screens/win_screen.PNG)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### Categories
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![Categories](/public/screens/categories.PNG)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### Words
 
-## Learn More
+![Words](/public/screens/words.PNG)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Mobile
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img src="public/screens/new_game_mobile.PNG" width="250" /> <img src="public/screens/win_screen_mobile.PNG" width="250" /> <img src="public/screens/categories_mobile.PNG" width="250" /> <img src="public/screens/words_mobile.PNG" width="250" />
 
-### Code Splitting
+### 🛠️ Run Locally
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Clone the project
 
-### Analyzing the Bundle Size
+```bash
+git clone https://github.com/AlbertKep/hamgman-game
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Install dependencies
 
-### Making a Progressive Web App
+```bash
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Start the dev server
 
-### Advanced Configuration
+```bash
+npm run start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 🎯 Learning Goals
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Component architecture — building a clean, modular structure for UI, logic, and animations.
+- State management — handling game flow, mistakes, letter states, and restart logic.
+- Framer Motion animations — creating smooth transitions, button interactions, and modal effects.
+- Responsive UI/UX — designing a layout that scales well across devices.
+- Clean JavaScript — writing readable, maintainable JS without TypeScript.
+- Game logic design — implementing word reveal mechanics, keyboard behavior, and win/- lose conditions.
